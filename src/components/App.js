@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Layout from "./hoc/Layout/Layout";
-import MoviesHolder from "./moviesHolder/MoviesHolder";
+import Layout from "./hoc/Layout/Layout.component";
+import MoviesHolder from "./moviesHolder/MoviesHolder.component";
 
 import { BrowserRouter as Router } from "react-router-dom";
 

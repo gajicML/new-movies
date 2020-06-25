@@ -1,0 +1,33 @@
+.sidebar {
+  & ul {
+    margin: 0;
+
+    & li {
+      font-size: 23px;
+      margin: 20px 0;
+      list-style-type: none;
+
+      &:hover {
+        cursor: pointer;
+        font-weight: bold;
+        transform: scale(0.9);
+        color: #d81e29;
+      }
+
+      & a {
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+      }
+    }
+  }
+
+  & .selected {
+    color: red;
+  }
+}
+
+@media (max-width: 767px) {
+}
+
+@media (max-width: 479px) {
+}

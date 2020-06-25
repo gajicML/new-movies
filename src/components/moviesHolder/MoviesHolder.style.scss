@@ -1,0 +1,33 @@
+.movies-holder {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.flex-main {
+  display: flex;
+  flex: 1;
+
+  & .flex-nav {
+    padding-top: 3rem;
+    flex: 1 1 0;
+  }
+  & .flex-article {
+    padding-top: 2rem;
+    flex: 5 2;
+  }
+}
+
+.page-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 479px) {
+}

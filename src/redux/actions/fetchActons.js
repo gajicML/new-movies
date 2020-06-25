@@ -3,19 +3,15 @@ import { FETCH_MOVIES } from "./typesConstants";
 import axiosInstance from "../axiosInstance";
 const API_KEY = process.env.REACT_APP_MOVIES_API_KEY;
 
-console.log(
-  `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
-);
-
-export const fetchPopularMovies = (page = 1) => (dispatch) => {
+export const fetchPageMovies = (type, page = 1) => (dispatch) => {
   dispatch({ type: FETCH_MOVIES.LOAD });
   axiosInstance
-    .get(`popular?api_key=${API_KEY}&language=en-US&page=${page}`)
+    .get(`${type}?api_key=${API_KEY}&language=en-US&page=${page}`)
 
     .then((response) => {
       let movies = response["data"]["results"];
 
-      dispatch(fetchSuccess(movies));
+      dispatch(fetchSuccess({ movies, type }));
     })
 
     .catch((error) => {
@@ -25,8 +21,10 @@ export const fetchPopularMovies = (page = 1) => (dispatch) => {
 };
 
 const fetchSuccess = (data) => {
+  const payload = { movies: [...data.movies], type: data.type };
+  console.log(payload);
   return function (dispatch) {
-    dispatch({ type: FETCH_MOVIES.SUCCESS, payload: [...data] });
+    dispatch({ type: FETCH_MOVIES.SUCCESS, payload: payload });
   };
 };
 
