@@ -4,4 +4,9 @@ const FETCH_MOVIES = {
   FAIL: "FETCH_MOVIES_FAIL",
 };
 
-export { FETCH_MOVIES };
+const FETCH_MORE = {
+  LOAD: "FETCH_MORE_LOAD",
+  SUCCESS: "FETCH_MORE_SUCCESS",
+};
+
+export { FETCH_MOVIES, FETCH_MORE };

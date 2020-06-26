@@ -5,8 +5,18 @@ import { fetchPageMovies } from "../../../redux/actions/fetchActons";
 
 import Preview from "../../other/preview/Preview.component";
 import Loading from "../../other/loading/Loading.component";
+import ShowMore from "../../other/showMore/ShowMore.component";
 
-const Homepage = ({ popular, dataLoading, fetchPageMovies }) => {
+const Homepage = (props) => {
+  const {
+    popular,
+    dataLoading,
+    fetchPageMovies,
+    page,
+    showMoreLoading,
+  } = props;
+
+  // console.log("page", page);
   useEffect(() => {
     fetchPageMovies("popular", 1);
   }, []);
@@ -15,20 +25,35 @@ const Homepage = ({ popular, dataLoading, fetchPageMovies }) => {
     return <Preview key={movie.id} {...movie} />;
   });
 
-  const renderMovies = <div className="page-wrapper">{movies}</div>;
+  const renderMovies = (
+    <>
+      <div className="page-wrapper">{movies}</div>
+      <ShowMore
+        onClick={() => {
+          fetchPageMovies("popular", page + 1, true);
+        }}
+      />
+    </>
+  );
 
   return <>{dataLoading ? <Loading /> : renderMovies}</>;
 };
 
 Homepage.propTypes = {
   fetchPageMovies: PropTypes.func,
+  popular: PropTypes.array,
+  page: PropTypes.number,
+  dataLoading: PropTypes.bool,
+  showMoreLoading: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => {
-  console.log("Homepage", state);
+  // console.log("Homepage", state);
   return {
-    popular: state.movies.popular,
+    popular: state.movies.popular.movies,
+    page: state.movies.popular.page,
     dataLoading: state.movies.dataLoading,
+    showMoreLoading: state.movies.showMoreLoading,
   };
 };
 

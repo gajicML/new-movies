@@ -5,8 +5,17 @@ import { fetchPageMovies } from "../../../redux/actions/fetchActons";
 
 import Preview from "../../other/preview/Preview.component";
 import Loading from "../../other/loading/Loading.component";
+import ShowMore from "../../other/showMore/ShowMore.component";
 
-const Upcoming = ({ upcoming, dataLoading, fetchPageMovies }) => {
+const Upcoming = (props) => {
+  const {
+    upcoming,
+    dataLoading,
+    fetchPageMovies,
+    page,
+    showMoreLoading,
+  } = props;
+
   useEffect(() => {
     fetchPageMovies("upcoming", 1);
   }, []);
@@ -15,20 +24,35 @@ const Upcoming = ({ upcoming, dataLoading, fetchPageMovies }) => {
     return <Preview key={movie.id} {...movie} />;
   });
 
-  const renderMovies = <div className="page-wrapper">{movies}</div>;
+  const renderMovies = (
+    <>
+      <div className="page-wrapper">{movies}</div>
+      <ShowMore
+        onClick={() => {
+          fetchPageMovies("upcoming", page + 1, true);
+        }}
+      />
+    </>
+  );
 
   return <>{dataLoading ? <Loading /> : renderMovies}</>;
 };
 
 Upcoming.propTypes = {
   fetchPageMovies: PropTypes.func,
+  upcoming: PropTypes.array,
+  page: PropTypes.number,
+  dataLoading: PropTypes.bool,
+  showMoreLoading: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => {
-  console.log("Upcoming", state);
+  // console.log("Upcoming", state);
   return {
-    upcoming: state.movies.upcoming,
+    upcoming: state.movies.upcoming.movies,
+    page: state.movies.upcoming.page,
     dataLoading: state.movies.dataLoading,
+    showMoreLoading: state.movies.showMoreLoading,
   };
 };
 
