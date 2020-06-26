@@ -1,0 +1,18 @@
+.error-boundary {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans Condensed", sans-serif;
+  color: #fff;
+  & h1 {
+    font-size: 45px;
+  }
+  & code {
+    color: red;
+  }
+  & .go-home {
+    font-size: 50px;
+    color: #3cd1e1;
+  }
+
+  text-align: center;
+}
