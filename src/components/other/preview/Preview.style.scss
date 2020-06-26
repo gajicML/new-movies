@@ -1,7 +1,7 @@
 .preview {
   min-width: 240px;
   max-width: 299px;
-  height: 400px;
+  height: 440px;
   display: flex;
   margin: 0px 16px 22px;
   overflow: hidden;
@@ -37,7 +37,7 @@
 
   & .content {
     width: 100%;
-    padding-bottom: 40px;
+    padding-bottom: 54px;
     position: relative;
 
     & .title,
@@ -48,7 +48,8 @@
     }
 
     & .title {
-      font-size: 22px;
+      font-size: 18px;
+      font-weight: normal;
     }
 
     & .description {

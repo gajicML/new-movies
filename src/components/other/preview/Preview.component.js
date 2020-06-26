@@ -6,12 +6,11 @@ import { Link, withRouter } from "react-router-dom";
 import Stars from "../stars/Stars";
 
 const Preview = (props) => {
-  const { title, backdrop_path, id, vote_average, release_date } = props;
+  const { title, poster_path, id, vote_average, release_date } = props;
 
-  const bg = backdrop_path
-    ? `https://image.tmdb.org/t/p/w500/${backdrop_path}`
+  const bg = poster_path
+    ? `https://image.tmdb.org/t/p/w342/${poster_path}`
     : noImg;
-
   const myStyle = {
     backgroundImage: `url(${bg})`,
   };
@@ -21,12 +20,9 @@ const Preview = (props) => {
       <div className="content">
         <Link
           to={{
-            pathname: `/movies/${title
-              .replace(/[^a-zA-Z ]/g, "")
-              .split(" ")
-              .join("_")
-              .substring(0, 40)}`,
+            pathname: `/movies/${title.split(" ").join("_").substring(0, 40)}`,
             movieId: id,
+            from: props.location.pathname,
           }}
         >
           <div className="background-image" style={myStyle}></div>
@@ -46,6 +42,7 @@ Preview.propTypes = {
   description: PropTypes.string,
   urlToImage: PropTypes.string,
   content: PropTypes.string,
+  vote_average: PropTypes.number,
 };
 
 export default withRouter(Preview);
