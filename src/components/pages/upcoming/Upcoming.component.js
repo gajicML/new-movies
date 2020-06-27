@@ -16,12 +16,14 @@ const Upcoming = (props) => {
     showMoreLoading,
   } = props;
 
-  useEffect(() => {
-    fetchPageMovies("upcoming", 1);
-  }, []);
+  if (upcoming.length < 1) {
+    useEffect(() => {
+      fetchPageMovies("upcoming", 1);
+    }, []);
+  }
 
   const movies = upcoming.map((movie) => {
-    return <Preview key={movie.id} {...movie} />;
+    return <Preview key={movie.id} movieObj={{ ...movie }} />;
   });
 
   const renderMovies = (

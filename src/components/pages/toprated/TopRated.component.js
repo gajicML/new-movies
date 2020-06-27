@@ -16,12 +16,13 @@ const TopRated = (props) => {
     showMoreLoading,
   } = props;
 
-  useEffect(() => {
-    fetchPageMovies("top_rated", 1);
-  }, []);
-
+  if (top_rated.length < 1) {
+    useEffect(() => {
+      fetchPageMovies("top_rated", 1);
+    }, []);
+  }
   const movies = top_rated.map((movie) => {
-    return <Preview key={movie.id} {...movie} />;
+    return <Preview key={movie.id} movieObj={{ ...movie }} />;
   });
 
   const renderMovies = (

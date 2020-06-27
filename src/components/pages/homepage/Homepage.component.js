@@ -16,13 +16,14 @@ const Homepage = (props) => {
     showMoreLoading,
   } = props;
 
-  // console.log("page", page);
-  useEffect(() => {
-    fetchPageMovies("popular", 1);
-  }, []);
+  if (popular.length < 1) {
+    useEffect(() => {
+      fetchPageMovies("popular", 1);
+    }, []);
+  }
 
-  const movies = popular.map((movie) => {
-    return <Preview key={movie.id} {...movie} />;
+  const movies = popular.map((movie, i) => {
+    return <Preview key={movie.id + i} movieObj={{ ...movie }} />;
   });
 
   const renderMovies = (
@@ -48,7 +49,7 @@ Homepage.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  // console.log("Homepage", state);
+  // console.log(state.movies.popular.movies);
   return {
     popular: state.movies.popular.movies,
     page: state.movies.popular.page,
