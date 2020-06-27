@@ -12,10 +12,8 @@ export const fetchPageMovies = (type, page, isShowMore) => (dispatch) => {
     .get(`${type}?api_key=${API_KEY}&language=en-US&page=${page}`)
 
     .then((response) => {
-      // console.log(response);
       let movies = response["data"]["results"];
       let pageNumber = response["data"]["page"];
-      // console.log("pageNumber", pageNumber);
       isShowMore
         ? dispatch(fetchMoreSuccess({ movies, type, pageNumber }))
         : dispatch(fetchSuccess({ movies, type, pageNumber }));
@@ -33,7 +31,6 @@ const fetchSuccess = (data) => {
     type: data.type,
     pageNumber: data.pageNumber,
   };
-  // console.log(payload);
   return function (dispatch) {
     dispatch({ type: FETCH_MOVIES.SUCCESS, payload: payload });
   };

@@ -1,9 +1,17 @@
-import { FETCH_MOVIES, FETCH_MORE } from "../actions/typesConstants";
+import {
+  FETCH_MOVIES,
+  FETCH_MORE,
+  FAVOURITES,
+} from "../actions/typesConstants";
 
 const initialState = {
   popular: { movies: [], page: 0 },
   top_rated: { movies: [], page: 0 },
   upcoming: { movies: [], page: 0 },
+  favourites: {
+    movies: [],
+    page: 0,
+  },
   dataLoading: false,
   showMoreLoading: false,
   error: false,
@@ -41,6 +49,29 @@ export default function (state = initialState, action) {
           page: action.payload.pageNumber,
         },
         showMoreLoading: false,
+      };
+
+    case FAVOURITES.ADD:
+      return {
+        ...state,
+        favourites: {
+          movies: [...state.favourites.movies, action.payload],
+        },
+      };
+
+    case FAVOURITES.REMOVE:
+      const favouritesFromState = [...state.favourites.movies];
+      const id = action.payload;
+
+      const filtered = favouritesFromState.filter((movie) => {
+        return movie.id !== id;
+      });
+
+      return {
+        ...state,
+        favourites: {
+          movies: filtered,
+        },
       };
 
     default:

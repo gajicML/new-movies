@@ -1,6 +1,6 @@
 .preview {
   min-width: 240px;
-  max-width: 299px;
+  max-width: 259px;
   height: 440px;
   display: flex;
   margin: 0px 16px 22px;
@@ -45,6 +45,10 @@
     .more {
       padding: 10px;
       margin: 0;
+    }
+
+    & .stars {
+      padding: 0 10px;
     }
 
     & .title {

@@ -1,0 +1,22 @@
+.empty-heart,
+.full-heart {
+  display: inline-block;
+  position: absolute;
+  font-family: FontAwesome;
+  padding: 0;
+  float: right;
+  bottom: 3px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.empty-heart::before {
+  content: "\f08a";
+  font-size: 40px;
+}
+
+.full-heart::before {
+  content: "\f004 ";
+  color: #bd2d00;
+  font-size: 35px;
+}
