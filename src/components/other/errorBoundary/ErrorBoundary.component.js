@@ -2,6 +2,7 @@ import React from "react";
 
 import "./ErrorBoundary.style.scss";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const ErrorBoundary = ({ message }) => {
   const messageHandle = message ? (
@@ -27,6 +28,10 @@ const ErrorBoundary = ({ message }) => {
       </h2>
     </div>
   );
+};
+
+ErrorBoundary.propTypes = {
+  message: PropTypes.string,
 };
 
 export default ErrorBoundary;

@@ -44,6 +44,10 @@
     background: #000;
   }
 }
+.page-title {
+  margin-left: 3rem;
+  margin-bottom: 2rem;
+}
 
 .page-wrapper {
   width: 90%;
@@ -57,5 +61,41 @@
   justify-content: flex-start;
 }
 
+@media (max-width: 1365px) {
+  .flex-main {
+    & .flex-article {
+      padding-top: 3rem;
+    }
+  }
+
+  .page-wrapper {
+    width: 96%;
+  }
+}
+
+@media (max-width: 1279px) {
+  .flex-main {
+    & .flex-article {
+      padding-top: 2rem;
+    }
+  }
+  .page-wrapper {
+    width: 98%;
+  }
+}
+
+@media (max-width: 767px) {
+  .flex-main {
+    & > .flex-nav {
+      display: none;
+    }
+    & .flex-article {
+      padding-top: 1rem;
+    }
+  }
+}
 @media (max-width: 479px) {
+  .page-title {
+    font-size: 1rem;
+  }
 }

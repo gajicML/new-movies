@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import "./Favourites.style.scss";
 
 import Preview from "../../other/preview/Preview.component";
-import SearchResult from "../../other/search/SearchResult.component";
+import SearchResult from "../searchResult/SearchResult.component";
 
 const Favourites = (props) => {
   const {
@@ -19,7 +19,13 @@ const Favourites = (props) => {
     return <Preview key={movie.id} movieObj={{ ...movie }} />;
   });
 
-  const renderMovies = <div className="page-wrapper">{movies}</div>;
+  const renderMovies = (
+    <>
+      <h1 className="page-title">Favourites movies:</h1>
+
+      <div className="favourites-page page-wrapper">{movies}</div>
+    </>
+  );
 
   const renderFav =
     favourites.length < 1 ? (

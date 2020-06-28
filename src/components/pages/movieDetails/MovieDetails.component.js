@@ -19,8 +19,11 @@ const MovieDetails = (props) => {
       ? "popular"
       : props.location.from.replace("-", "_").substring(1);
 
-  // match page (popular, upcoming...)
-  const matchedGroupMovies = props.movies[fromUrl]["movies"];
+  // match page (popular, upcoming... and concat searched)
+  const matchedGroupMovies = [
+    ...props.movies[fromUrl]["movies"],
+    ...props.movies.searched.movies,
+  ];
 
   // find movie from matched page
   let matchedMovie = matchedGroupMovies.filter((movie) => movie.id === id)[0];

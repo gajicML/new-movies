@@ -6,8 +6,8 @@
     color: #fff;
     width: 100%;
     padding: 20px;
-    -webkit-transition: all 0.4s ease-out;
-    transition: all 0.4s ease-out;
+    -webkit-transition: all 3s ease-out;
+    transition: all 3s ease-out;
     font-size: 20px;
     background-color: #2b0000;
 
@@ -48,17 +48,15 @@
   }
 }
 
-h1 {
-  color: #fff;
-  font-size: 30px;
-  margin-top: 0;
-  margin-left: 6rem;
+.search-input input:-webkit-autofill,
+.search-input input:-webkit-autofill:hover,
+.search-input input:-webkit-autofill:focus {
+  background-color: #000000 !important;
+  color: #fff !important;
 }
-.no-result {
-  text-align: center;
-  margin: 0;
-}
-.search-title {
-  position: relative;
-  bottom: 3rem;
+
+@media (max-width: 768px) {
+  .search-input {
+    flex: 8 2;
+  }
 }

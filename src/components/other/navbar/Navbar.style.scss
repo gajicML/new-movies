@@ -18,3 +18,11 @@
     flex: 5 2;
   }
 }
+
+@media (max-width: 767px) {
+  .navbar {
+    & .logo {
+      background: none !important;
+    }
+  }
+}

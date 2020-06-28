@@ -1,6 +1,7 @@
 import React from "react";
 import "./FavouriteButton.style.scss";
 import ReactTooltip from "react-tooltip";
+import PropTypes from "prop-types";
 
 const FavouriteButton = (props) => {
   return (
@@ -13,10 +14,15 @@ const FavouriteButton = (props) => {
       ></div>
 
       <ReactTooltip id="registerTip" place="top" effect="solid">
-        Add/Remove from favourites
+        Add / Remove from favourites
       </ReactTooltip>
     </>
   );
+};
+
+FavouriteButton.propTypes = {
+  add: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 export default FavouriteButton;

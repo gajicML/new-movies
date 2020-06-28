@@ -24,3 +24,16 @@
   -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
 }
+
+@media (max-width: 999px) {
+  .empty-heart::before,
+  .full-heart::before {
+    font-size: 20px;
+  }
+
+  .empty-heart,
+  .full-heart {
+    bottom: 5px;
+    right: 5px;
+  }
+}

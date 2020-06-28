@@ -6,7 +6,7 @@ import { fetchPageMovies } from "../../../redux/actions/fetchActons";
 import Preview from "../../other/preview/Preview.component";
 import Loading from "../../other/loading/Loading.component";
 import ShowMore from "../../other/showMore/ShowMore.component";
-import SearchResult from "../../other/search/SearchResult.component";
+import SearchResult from "../searchResult/SearchResult.component";
 
 const Homepage = (props) => {
   const {
@@ -36,6 +36,7 @@ const Homepage = (props) => {
     <Loading />
   ) : (
     <>
+      <h1 className="page-title">Popular movies:</h1>
       <div className="page-wrapper">{movies}</div>
       <ShowMore
         onClick={() => {

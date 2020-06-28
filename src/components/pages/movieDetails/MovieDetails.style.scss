@@ -27,3 +27,18 @@
     color: red;
   }
 }
+@media (max-width: 1279px) {
+  .movieDetails {
+    width: 95%;
+  }
+
+  .movieDetails img {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 999px) {
+  .movieDetails img {
+    max-width: 400px;
+  }
+}

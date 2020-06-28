@@ -28,6 +28,7 @@ const Search = (props) => {
       <div className="search-input">
         <input
           name="search-input"
+          autoComplete="off"
           onChange={onChange}
           placeholder="&#61442;  Search movies"
         />
