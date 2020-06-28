@@ -1,4 +1,4 @@
-import { FAVOURITES } from "./typesConstants";
+import { FAVOURITES, OTHER } from "./typesConstants";
 
 export const addToFavourites = (movie) => {
   return function (dispatch) {
@@ -11,4 +11,11 @@ export const removeFromFavourites = (id) => {
   return function (dispatch) {
     dispatch({ type: FAVOURITES.REMOVE, payload: id });
   };
+};
+
+export const toggleSidedrawer = (show) => (dispatch) => {
+  dispatch({
+    type: OTHER.TOGGLE_SIDEDRAWER,
+    payload: !show,
+  });
 };

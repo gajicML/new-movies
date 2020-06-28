@@ -1,0 +1,30 @@
+.sidedrawer {
+  position: fixed;
+  width: 170px;
+  max-width: 70%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 200;
+  background: #39393b;
+  padding: 32px 0;
+  transition: transform 0.4s ease-out;
+  background: black;
+  background: -moz-linear-gradient(90deg, black 10%, #2b0000 100%);
+  background: -webkit-linear-gradient(90deg, black 10%, #2b0000 100%);
+  background: linear-gradient(90deg, black 10%, #2b0000 100%);
+}
+
+.open {
+  transform: translateX(0);
+}
+
+.close {
+  transform: translateX(-100%);
+}
+
+@media (min-width: 768px) {
+  .sidedrawer {
+    display: none;
+  }
+}

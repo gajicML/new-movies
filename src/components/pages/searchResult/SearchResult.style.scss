@@ -1,0 +1,38 @@
+h1 {
+  color: #fff;
+}
+
+.no-result,
+.search-title {
+  font-size: 30px;
+  margin-top: 0;
+  margin-left: 6rem;
+}
+.no-result {
+  text-align: center;
+  margin: 0;
+}
+.search-title {
+  position: relative;
+  bottom: 3rem;
+}
+
+@media (max-width: 1365px) {
+  .search-title {
+    position: relative;
+    bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 1279px) {
+  .search-title {
+    bottom: 0.5rem;
+    margin-left: 1em;
+  }
+}
+
+@media (max-width: 999px) {
+  .search-title {
+    font-size: 20px;
+  }
+}

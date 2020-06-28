@@ -2,6 +2,7 @@ import {
   FETCH_MOVIES,
   FETCH_MORE,
   FAVOURITES,
+  OTHER,
 } from "../actions/typesConstants";
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
   dataLoading: false,
   showMoreLoading: false,
   error: false,
+  show: false,
 };
 
 export default function (state = initialState, action) {
@@ -90,6 +92,12 @@ export default function (state = initialState, action) {
         favourites: {
           movies: filtered,
         },
+      };
+
+    case OTHER.TOGGLE_SIDEDRAWER:
+      return {
+        ...state,
+        show: action.payload,
       };
 
     default:

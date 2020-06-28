@@ -1,8 +1,8 @@
 import React from "react";
 import { fetchSearched } from "../../../redux/actions/fetchActons";
-import "./Search.style.scss";
+import "./SearchResult.style.scss";
 import PropTypes from "prop-types";
-import Preview from "../preview/Preview.component";
+import Preview from "../../other/preview/Preview.component";
 import { connect } from "react-redux";
 import ShowMore from "../../other/showMore/ShowMore.component";
 
@@ -36,7 +36,7 @@ const SearchResult = ({
         <h1 className="no-result">NO SEARCH RESULTS</h1>
       ) : (
         <>
-          <h1 className="search-title">Search results:</h1>
+          <h1 className="page-title">Search results:</h1>
           <div className="search_result page-wrapper"> {movies}</div>
           {showMore}
         </>
