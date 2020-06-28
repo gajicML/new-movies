@@ -1,4 +1,5 @@
 import { FETCH_MOVIES, FETCH_MORE } from "./typesConstants";
+import _ from "loadsh";
 
 import axiosInstance from "../axiosInstance";
 const API_KEY = process.env.REACT_APP_MOVIES_API_KEY;
@@ -64,6 +65,29 @@ export const fetchSearched = (searchTerm, page = 1, isShowMore) => (
       payload: { searched: [], searchTerm: "" },
     });
 
+  // advanced search, before after
+  let advancedTermData = checkSearchTerm(searchTerm);
+
+  if (_.isEmpty(advancedTermData)) {
+    getSearched(searchTerm, page, isShowMore, dispatch);
+  } else {
+    getSearched(
+      advancedTermData.searchTerm,
+      page,
+      isShowMore,
+      dispatch,
+      advancedTermData
+    );
+  }
+};
+
+const getSearched = (
+  searchTerm,
+  page,
+  isShowMore,
+  dispatch,
+  advancedTermData
+) => {
   axiosInstance
     .get(
       `search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}&page=${page}&include_adult=false`
@@ -79,7 +103,14 @@ export const fetchSearched = (searchTerm, page = 1, isShowMore) => (
 
       dispatch({
         type: FETCH_MOVIES.SEARCH,
-        payload: { searched, searchTerm, pageNumber, totalPages, isShowMore },
+        payload: {
+          searched,
+          searchTerm,
+          pageNumber,
+          totalPages,
+          isShowMore,
+          advancedTermData,
+        },
       });
     })
 
@@ -89,4 +120,34 @@ export const fetchSearched = (searchTerm, page = 1, isShowMore) => (
     });
 };
 
-export const fetchSearchMore = () => {};
+const checkSearchTerm = (searchTerm) => {
+  const keywords = ["before", "after"];
+  let splitArr = searchTerm.trim().split(" ");
+  let returnMovieData = {};
+
+  keywords.forEach((keyword) => {
+    let keywordIndex = splitArr.indexOf(keyword);
+    let nextWord = splitArr[keywordIndex + 1];
+
+    // Search movies with query string 'my life', release date after and including 2015
+    // EXAMPLE:
+    // my life after 2015
+    if (
+      // does keyword exist in searchTerm?
+      splitArr.includes(keyword) &&
+      // is not first element?
+      keywordIndex > 0 &&
+      // is number next word after keyword
+      /^\d+$/.test(nextWord) &&
+      // length of year must be four digit
+      nextWord.length === 4
+    ) {
+      returnMovieData = {
+        searchTerm: splitArr.slice(0, keywordIndex).join(" "),
+        keyword: keyword,
+        year: nextWord,
+      };
+    }
+  });
+  return returnMovieData;
+};

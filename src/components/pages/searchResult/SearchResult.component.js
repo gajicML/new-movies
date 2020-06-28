@@ -17,7 +17,7 @@ const SearchResult = ({
     return <Preview key={movie.id + i} movieObj={{ ...movie }} />;
   });
 
-  console.log("page", searchPage);
+  // console.log("page", searchPage);
 
   const showMore =
     totalPages > searchPage ? (

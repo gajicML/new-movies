@@ -77,7 +77,6 @@ Homepage.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.movies);
   return {
     popular: state.movies.popular.movies,
     page: state.movies.popular.page,
