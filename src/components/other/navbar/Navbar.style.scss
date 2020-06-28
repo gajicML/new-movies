@@ -1,2 +1,20 @@
 .navbar {
+  color: #fff;
+  background-color: #000000;
+  display: flex;
+
+  & .logo {
+    flex: 1 1 0;
+    align-self: center;
+    text-align: center;
+    font-style: italic;
+    height: 36px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  & .search {
+    flex: 5 2;
+  }
 }

@@ -12,11 +12,15 @@
 
 .empty-heart::before {
   content: "\f08a";
-  font-size: 40px;
+  font-size: 30px;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .full-heart::before {
   content: "\f004 ";
   color: #bd2d00;
-  font-size: 35px;
+  font-size: 30px;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
 }

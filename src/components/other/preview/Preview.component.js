@@ -6,7 +6,7 @@ import "./Preview.style.scss";
 import noImg from "../../../assets/noImg.jpg";
 import Stars from "../stars/Stars.component";
 import FavouriteButton from "../favouriteButton/FavouriteButton.component";
-import { isInFavourites } from "../../../helpers";
+import { isInFavourites, checkAvailability } from "../../../helpers";
 
 import {
   addToFavourites,
@@ -39,7 +39,7 @@ const Preview = (props) => {
           <div className="background-image" style={myStyle}></div>
         </Link>
         <h1 className="title">
-          {title} ({release_date.substring(0, 4)})
+          {title} ({checkAvailability(release_date, "N/A").substring(0, 4)})
         </h1>
         <div className="stars">
           <Stars vote_average={vote_average} />

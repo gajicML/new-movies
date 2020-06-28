@@ -12,6 +12,8 @@ const initialState = {
     movies: [],
     page: 0,
   },
+  searched: { movies: [], page: 0 },
+  searchTerm: "",
   dataLoading: false,
   showMoreLoading: false,
   error: false,
@@ -49,6 +51,22 @@ export default function (state = initialState, action) {
           page: action.payload.pageNumber,
         },
         showMoreLoading: false,
+      };
+
+    case FETCH_MOVIES.SEARCH:
+      let movies = action.payload.isShowMore
+        ? [...state.searched.movies, ...action.payload.searched]
+        : action.payload.searched;
+
+      return {
+        ...state,
+        searched: {
+          movies: movies,
+          page: action.payload.pageNumber,
+          totalPages: action.payload.totalPages,
+        },
+        searchTerm: action.payload.searchTerm,
+        dataLoading: false,
       };
 
     case FAVOURITES.ADD:

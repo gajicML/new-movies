@@ -6,6 +6,7 @@ import { fetchPageMovies } from "../../../redux/actions/fetchActons";
 import Preview from "../../other/preview/Preview.component";
 import Loading from "../../other/loading/Loading.component";
 import ShowMore from "../../other/showMore/ShowMore.component";
+import SearchResult from "../../other/search/SearchResult.component";
 
 const TopRated = (props) => {
   const {
@@ -13,7 +14,10 @@ const TopRated = (props) => {
     dataLoading,
     fetchPageMovies,
     page,
-    showMoreLoading,
+    searched,
+    searchTerm,
+    totalSearchPages,
+    searchPage,
   } = props;
 
   if (top_rated.length < 1) {
@@ -21,11 +25,13 @@ const TopRated = (props) => {
       fetchPageMovies("top_rated", 1);
     }, []);
   }
-  const movies = top_rated.map((movie) => {
-    return <Preview key={movie.id} movieObj={{ ...movie }} />;
+  const movies = top_rated.map((movie, i) => {
+    return <Preview key={movie.id + i} movieObj={{ ...movie }} />;
   });
 
-  const renderMovies = (
+  const renderMovies = dataLoading ? (
+    <Loading />
+  ) : (
     <>
       <div className="page-wrapper">{movies}</div>
       <ShowMore
@@ -36,15 +42,31 @@ const TopRated = (props) => {
     </>
   );
 
-  return <>{dataLoading ? <Loading /> : renderMovies}</>;
+  return (
+    <>
+      {searchTerm ? (
+        <SearchResult
+          searchedMovies={searched}
+          searchTerm={searchTerm}
+          totalPages={totalSearchPages}
+          searchPage={searchPage}
+        />
+      ) : (
+        renderMovies
+      )}
+    </>
+  );
 };
 
 TopRated.propTypes = {
   fetchPageMovies: PropTypes.func,
-  top_rated: PropTypes.array,
+  popular: PropTypes.array,
   page: PropTypes.number,
   dataLoading: PropTypes.bool,
-  showMoreLoading: PropTypes.bool,
+  searched: PropTypes.array,
+  searchTerm: PropTypes.string,
+  totalSearchPages: PropTypes.number,
+  searchPage: PropTypes.number,
 };
 
 const mapStateToProps = (state) => {
@@ -52,7 +74,10 @@ const mapStateToProps = (state) => {
     top_rated: state.movies.top_rated.movies,
     page: state.movies.top_rated.page,
     dataLoading: state.movies.dataLoading,
-    showMoreLoading: state.movies.showMoreLoading,
+    searched: state.movies.searched.movies,
+    searchTerm: state.movies.searchTerm,
+    totalSearchPages: state.movies.searched.totalPages,
+    searchPage: state.movies.searched.page,
   };
 };
 

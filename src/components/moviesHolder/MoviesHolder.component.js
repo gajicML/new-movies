@@ -43,8 +43,4 @@ const MoviesHolder = () => {
   return <Auxiliary>{moviesHolder}</Auxiliary>;
 };
 
-const mapStateToProps = (state) => ({
-  // error: state.movies.error,
-});
-
-export default connect(mapStateToProps)(MoviesHolder);
+export default connect(null)(MoviesHolder);

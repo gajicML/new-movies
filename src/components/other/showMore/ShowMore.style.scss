@@ -1,13 +1,14 @@
 .show-more {
-  background: blue;
-  border: none;
-  font-size: 24px;
+  background: #770000;
+  font-size: 20px;
   cursor: pointer;
   color: #fff;
   padding: 10px;
   font-family: "Barlow", sans-serif;
   margin: 30px auto 50px;
-  width: 200px;
+  width: 167px;
   display: block;
   text-align: center;
+  border-radius: 9px;
+  border: 3px solid #2d0000;
 }

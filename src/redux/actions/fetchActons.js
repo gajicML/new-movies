@@ -9,7 +9,7 @@ export const fetchPageMovies = (type, page, isShowMore) => (dispatch) => {
     : dispatch({ type: FETCH_MOVIES.LOAD });
 
   axiosInstance
-    .get(`${type}?api_key=${API_KEY}&language=en-US&page=${page}`)
+    .get(`movie/${type}?api_key=${API_KEY}&language=en-US&page=${page}`)
 
     .then((response) => {
       let movies = response["data"]["results"];
@@ -52,3 +52,41 @@ const fetchMoreSuccess = (data) => {
     dispatch({ type: FETCH_MORE.SUCCESS, payload: payload });
   };
 };
+
+export const fetchSearched = (searchTerm, page = 1, isShowMore) => (
+  dispatch
+) => {
+  dispatch({ type: FETCH_MOVIES.LOAD });
+
+  if (searchTerm.length < 3)
+    return dispatch({
+      type: FETCH_MOVIES.SEARCH,
+      payload: { searched: [], searchTerm: "" },
+    });
+
+  axiosInstance
+    .get(
+      `search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}&page=${page}&include_adult=false`
+    )
+
+    .then((response) => {
+      // console.log("response", response);
+      const unsorted = response["data"]["results"],
+        totalPages = response["data"]["total_pages"],
+        pageNumber = response["data"]["page"];
+
+      const searched = unsorted.sort((a, b) => b.vote_average - a.vote_average);
+
+      dispatch({
+        type: FETCH_MOVIES.SEARCH,
+        payload: { searched, searchTerm, pageNumber, totalPages, isShowMore },
+      });
+    })
+
+    .catch((error) => {
+      dispatch(fetchFail(error.message));
+      console.error(error);
+    });
+};
+
+export const fetchSearchMore = () => {};

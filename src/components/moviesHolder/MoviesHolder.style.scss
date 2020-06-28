@@ -1,33 +1,60 @@
 .movies-holder {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .flex-header {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  position: fixed;
+  width: 100%;
+  z-index: 999999999;
 }
 
 .flex-main {
   display: flex;
   flex: 1;
+  padding-top: 3rem;
 
   & .flex-nav {
     padding-top: 3rem;
     flex: 1 1 0;
+    background: rgb(0, 0, 0);
+    background: -moz-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 1) 10%,
+      rgba(43, 0, 0, 1) 100%
+    );
+    background: -webkit-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 1) 10%,
+      rgba(43, 0, 0, 1) 100%
+    );
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 1) 10%,
+      rgba(43, 0, 0, 1) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#2b0000",GradientType=1);
   }
   & .flex-article {
-    padding-top: 2rem;
+    background-size: cover;
+    background-position: center;
+    padding-top: 5rem;
     flex: 5 2;
+    background: #000;
   }
 }
 
 .page-wrapper {
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  justify-content: start;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
+.search_result.page-wrapper {
+  justify-content: flex-start;
 }
 
 @media (max-width: 479px) {
