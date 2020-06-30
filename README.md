@@ -2,6 +2,10 @@
 
 New-movies is a movie search application that uses [TMDB API](https://developers.themoviedb.org/3/) as a source. The app has the ability to display popular, upcoming and top rated movies. It also offers a search option as well as a selection of favorite movies.
 
+## Demo
+
+https://new-movies.netlify.app/
+
 ## Base Technologies
 
 React with Redux, SASS
