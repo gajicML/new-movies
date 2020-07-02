@@ -19,10 +19,11 @@ git clone https://github.com/gajicML/new-movies.git
 Register on TMDB to get the key
 
 ```bash
+cd new-movies
+
 npm install
 ```
-
-Copy key to .env file
+Create .env file and copy api key as REACT_APP_MOVIES_API_KEY={YOUR API KEY}
 
 ```bash
 npm start
